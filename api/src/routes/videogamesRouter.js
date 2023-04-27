@@ -1,21 +1,14 @@
 const { Router } = require("express");
+const {
+  getVideogamesById,
+  getVideogames,
+  getVideogame,
+} = require("../handlers/videogamesHandlers");
 
 const videogamesRouter = Router();
 
-videogamesRouter.get("/", (req, res) => {
-  res.status(200).send("estoy en video");
-});
-
-videogamesRouter.get("/:id", (req, res) => {
-  res.status(200).send("detalle del video");
-});
-
-videogamesRouter.get("/name", (req, res) => {
-  res.status(200).send("envio 15 videojuegos");
-});
-
-videogamesRouter.post("/", (req, res) => {
-  res.status(200).send("crear usuario");
-});
+videogamesRouter.get("/:id", getVideogamesById);
+videogamesRouter.get("/", getVideogames);
+videogamesRouter.get("/name", getVideogame);
 
 module.exports = videogamesRouter;
