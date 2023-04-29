@@ -1,15 +1,41 @@
-const getVideogamesById = (req, res) => {
-  res.send("NIY: Esta ruta obtiene el detalle de un videojuego específico. ");
-};
-const getVideogames = (req, res) => {
-  res.send(
-    "NIY: Obtiene un arreglo de objetos, donde cada objeto es un videojuego con su información."
-  );
-};
-const getVideogame = (req, res) => {
-  res.send(
-    "NIY: Esta ruta debe obtener los primeros 15 videojuegos que se encuentren con la palabra recibida por query"
-  );
+const {
+  createVideogame,
+  VideogamesById,
+} = require("../controllers/videogamesControllers");
+
+const getVideogamesById = async (req, res) => {
+  const { id } = req.params;
+  const source = isNaN(id) ? "bdd" : "api";
+
+  try {
+    const gameID = await VideogamesById(id, source);
+    res.status(200).json(gameID);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };
 
-module.exports = { getVideogame, getVideogames, getVideogamesById };
+const getVideogames = (req, res) => {
+  const { name } = req.query;
+  if (name) res.send(`Esta ruta envia un nombre: ${name}`);
+  else res.send("Esta ruta envia todos los usuarios");
+};
+
+const postVideogames = async (req, res) => {
+  const { name, description, platforms, image, release, rating } = req.body;
+  try {
+    const newVideogame = await createVideogame(
+      name,
+      description,
+      platforms,
+      image,
+      release,
+      rating
+    );
+    res.status(201).json(newVideogame);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+module.exports = { getVideogames, getVideogamesById, postVideogames };
