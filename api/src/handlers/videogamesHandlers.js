@@ -1,12 +1,14 @@
 const {
   createVideogame,
   VideogamesById,
+  allgetVideogames,
+  searchgetVideogames,
 } = require("../controllers/videogamesControllers");
 
+//------>>>//----//<<<------//
 const getVideogamesById = async (req, res) => {
   const { id } = req.params;
-  const source = isNaN(id) ? "bdd" : "api";
-
+  const source = isNaN(id) ? "db" : "api";
   try {
     const gameID = await VideogamesById(id, source);
     res.status(200).json(gameID);
@@ -15,21 +17,25 @@ const getVideogamesById = async (req, res) => {
   }
 };
 
-const getVideogames = (req, res) => {
+//------>>>//----//<<<------//
+const getVideogames = async (req, res) => {
   const { name } = req.query;
-  if (name) res.send(`Esta ruta envia un nombre: ${name}`);
-  else res.send("Esta ruta envia todos los usuarios");
+  const results = name
+    ? await searchgetVideogames(name)
+    : await allgetVideogames();
+  res.status(200).json(results);
 };
 
+//------>>>//----//<<<------//
 const postVideogames = async (req, res) => {
-  const { name, description, platforms, image, release, rating } = req.body;
+  const { name, description, platforms, image, released, rating } = req.body;
   try {
     const newVideogame = await createVideogame(
       name,
       description,
       platforms,
       image,
-      release,
+      released,
       rating
     );
     res.status(201).json(newVideogame);

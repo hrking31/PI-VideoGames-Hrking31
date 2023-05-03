@@ -1,14 +1,16 @@
-const { createGenre } = require("../controllers/usersControllers");
+const { createGenre } = require("../controllers/genresControllers");
 
 const postGenres = async (req, res) => {
-  const { name, description, released, rating, platforms, genres } = req.body;
+  const { name, description, platforms, image, release, rating, genres } =
+    req.body;
   try {
     const newGenres = await createGenre(
       name,
       description,
-      released,
-      rating,
       platforms,
+      image,
+      release,
+      rating,
       genres
     );
     res.status(201).json(newGenres);

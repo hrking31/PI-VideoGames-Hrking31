@@ -8,8 +8,8 @@ module.exports = (sequelize) => {
     {
       id: {
         type: DataTypes.UUID,
-        primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
       },
       name: {
         type: DataTypes.STRING,
@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
         unique: true,
       },
       description: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
       platforms: {
@@ -28,13 +28,17 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      release: {
+      released: {
         type: DataTypes.STRING,
         allowNull: true,
       },
       rating: {
-        type: DataTypes.STRING,
+        type: DataTypes.FLOAT,
         allowNull: false,
+      },
+      created: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
       },
     },
     {
