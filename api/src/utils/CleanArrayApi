@@ -1,0 +1,21 @@
+module.exports = cleanArrayApi = (arr) =>
+  arr.map((Elem) => {
+    return {
+      id: Elem.id,
+      name: Elem.name,
+      description: Elem.description,
+      image: Elem.background_image,
+      released: Elem.released,
+      rating: Elem.rating,
+      platforms: Elem.platforms.map((nombre) => nombre.platform.name),
+      created: false,
+    };
+  });
+
+// const videogame =
+//   source === "api"
+//     ? (await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`))
+//         .data
+//     : await Videogame.findByPk(id);
+// // return videogame;
+// return cleanArray([videogame]);

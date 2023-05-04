@@ -1,0 +1,13 @@
+module.exports = cleanArrayDb = (arr) =>
+  arr.map((Elem) => {
+    return {
+      id: Elem.id,
+      name: Elem.name,
+      description: Elem.description,
+      image: Elem.background_image,
+      released: Elem.released,
+      rating: Elem.rating,
+      platforms: Elem.platforms.map((ch) => ch),
+      created: true,
+    };
+  });
