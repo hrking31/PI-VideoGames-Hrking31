@@ -8,7 +8,8 @@ module.exports = cleanArrayApi = (arr) =>
       released: Elem.released,
       rating: Elem.rating,
       platforms: Elem.platforms.map((nombre) => nombre.platform.name),
-      created: false,
+      genres: Elem.genres.map((nombre) => nombre.name),
+      created: Elem.created,
     };
   });
 

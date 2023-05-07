@@ -11,7 +11,8 @@ const createVideogame = async (
   platforms,
   image,
   released,
-  rating
+  rating,
+  genres
 ) =>
   await Videogame.create({
     name,
@@ -20,6 +21,7 @@ const createVideogame = async (
     image,
     released,
     rating,
+    genres,
   });
 
 //------>>>//--BUSCA VIDEOGAME POR ID--//<<<------//

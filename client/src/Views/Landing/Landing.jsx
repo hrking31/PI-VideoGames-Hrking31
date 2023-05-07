@@ -6,12 +6,12 @@ export default function Landing() {
   return (
     <div>
       <div className={style.container}>
-        <div className="landingfont">
-          <h2> Welcome to Knight's Quest</h2>
-          <Link to="/home">
-            <button className="buttonLanding">Start</button>
-          </Link>
+        <div className={style.title}>
+          <h1>Welcome to King of Games</h1>
         </div>
+        <Link to="/home">
+          <button className={style.button}>START</button>
+        </Link>
       </div>
     </div>
   );

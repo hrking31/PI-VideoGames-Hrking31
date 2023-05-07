@@ -7,7 +7,8 @@ module.exports = cleanArrayDb = (arr) =>
       image: Elem.background_image,
       released: Elem.released,
       rating: Elem.rating,
-      platforms: Elem.platforms.map((ch) => ch),
-      created: true,
+      platforms: Elem.platforms.map((nombre) => nombre),
+      genres: Elem.genres.map((nombre) => nombre.name),
+      created: Elem.created,
     };
   });

@@ -7,7 +7,8 @@ const {
 
 //------>>>//--CREA VIDEOGAME--//<<<------//
 const postVideogames = async (req, res) => {
-  const { name, description, platforms, image, released, rating } = req.body;
+  const { name, description, platforms, image, released, rating, genres } =
+    req.body;
   try {
     const newVideogame = await createVideogame(
       name,
@@ -15,7 +16,8 @@ const postVideogames = async (req, res) => {
       platforms,
       image,
       released,
-      rating
+      rating,
+      genres
     );
     res.status(201).json(newVideogame);
   } catch (error) {

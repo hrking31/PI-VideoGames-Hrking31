@@ -26,8 +26,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background: url(../src/assets/VideogamesBackground1.jpg) no-repeat center
-    center fixed;
+  /* background: url(../src/assets/VideogamesBackground1.jpg) no-repeat center
+    center fixed; */
+  background-color: #b22222;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
