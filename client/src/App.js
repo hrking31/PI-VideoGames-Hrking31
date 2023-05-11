@@ -7,10 +7,15 @@ function App() {
   const location = useLocation();
   return (
     <div className="App">
-      {location.pathname !== "/" && <NavBar />}
+      {location.pathname !== "/" &&
+        location.pathname !== "/create" &&
+        !/^\/detail\/(\d+|[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12})$/.test(
+          location.pathname
+        ) &&
+        location.pathname !== "/" && <NavBar />}
       <Route exact path="/" component={Landing} />
       <Route path="/home" render={() => <Home />} />
-      <Route exact path="/detail" component={Detail} />
+      <Route exact path="/detail/:id" component={Detail} />
       <Route exact path="/create" component={Form} />
     </div>
   );

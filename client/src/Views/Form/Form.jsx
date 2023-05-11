@@ -1,5 +1,6 @@
 import axios from "axios";
 import style from "../Form/Form.module.css";
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
 
 export default function Form() {
@@ -80,6 +81,14 @@ export default function Form() {
 
   return (
     <form onSubmit={submitHandler}>
+      <div className={style.button_container}>
+        <Link to="/">
+          <button>Landing</button>
+        </Link>
+        <Link to="/Home">
+          <button>Home</button>
+        </Link>
+      </div>
       <div className={style.form_container}>
         <div className={style.title}>
           <h1>Create Videogame</h1>

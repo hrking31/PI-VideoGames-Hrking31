@@ -85,3 +85,23 @@
   margin-bottom: 10px;
   border-radius: 10px;
 }
+
+.button_container button {
+  margin-right: 1.8rem;
+  border-width: 1px;
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  font-weight: bold;
+  color: #b22222;
+  background-color: #e0be12;
+  border: 4px solid blue;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.3);
+}
+
+.button_container:button hover {
+  background-color: rgb(245, 166, 8);
+  cursor: pointer;
+}
