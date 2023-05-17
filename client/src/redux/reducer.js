@@ -2,58 +2,71 @@ import {
   GET_VIDEOGAMES,
   GET_VIDEOGAME,
   GET_VIDEOGAME_DATAIL,
-  ORDER,
+  ORDER_NAME,
   ORDER_GENRES,
   ORDER_RATING,
+  CREATED,
   RESET,
+  NEXT,
+  PREV,
 } from "./types";
 
 const initialState = {
   originVideogames: [],
   videogames: [],
   detailVideogames: [],
+  numPage: 1,
 };
 
+//------>>>//--BUSCA TODOS LOS VIDEOGAME--//<<<------//
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_VIDEOGAMES:
       return {
         ...state,
         videogames: action.payload,
+        originVideogames: action.payload,
       };
 
+    //------>>>//--BUSCA VIDEOGAME POR NOMBRE--//<<<------//
     case GET_VIDEOGAME:
       return {
         ...state,
         videogames: action.payload,
+        originVideogames: action.payload,
       };
 
+    //------>>>//--BUSCA VIDEOGAME POR ID--//<<<------//
     case GET_VIDEOGAME_DATAIL:
       return { ...state, detailVideogames: action.payload };
 
-    case ORDER:
-      const newOrder = state.videogames.sort((a, b) => {
-        if (a.id > b.id) {
-          return "A" === action.payload ? 1 : -1;
-        }
+    //------>>>//--ORDENA POR ID--//<<<------//
+    case ORDER_NAME:
+      const newName =
+        action.payload === "asc"
+          ? [...state.originVideogames].sort((a, b) => {
+              return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+            })
+          : [...state.originVideogames].sort((a, b) => {
+              return b.name.toLowerCase().localeCompare(a.name.toLowerCase());
+            });
+      return {
+        ...state,
+        videogames: newName,
+      };
 
-        if (a.id < b.id) {
-          return "D" === action.payload ? 1 : -1;
-        }
-        return 0;
-      });
-      return { ...state, videogames: newOrder };
-
+    //------>>>//--ORDENA POR GENRES--//<<<------//
     case ORDER_GENRES:
-      const newGenres = state.videogames.filter(
+      const newGenres = [...state.originVideogames].filter(
         (genero) => genero.genres === action.payload
       );
-      return { videogames: newGenres };
+      return { ...state, videogames: newGenres };
 
+    //------>>>//--ORDENA POR RATING--//<<<------//
     case ORDER_RATING:
       const newRating =
         action.payload === "asc"
-          ? state.videogames.sort(function (a, b) {
+          ? [...state.originVideogames].sort(function (a, b) {
               if (a.rating > b.rating) {
                 return 1;
               }
@@ -62,7 +75,7 @@ const rootReducer = (state = initialState, action) => {
               }
               return 0;
             })
-          : state.videogames.sort(function (a, b) {
+          : [...state.originVideogames].sort(function (a, b) {
               if (a.rating > b.rating) {
                 return -1;
               }
@@ -76,8 +89,27 @@ const rootReducer = (state = initialState, action) => {
         videogames: newRating,
       };
 
+    //------>>>//--ORDENA POR CREACION--//<<<------//
+    case CREATED:
+      const newCreated =
+        action.payload === "true"
+          ? [...state.originVideogames].filter(
+              (creado) => creado.created === true
+            )
+          : [...state.originVideogames].filter(
+              (creado) => creado.created === action.payload
+            );
+      return { ...state, videogames: newCreated };
+
+    //------>>>//--REINICIA LOS FILTORS--//<<<------//
     case RESET:
-      return { ...state, videogames: state.videogames };
+      return { ...state, videogames: [...state.originVideogames] };
+
+    case NEXT:
+      return { ...state, numPage: state.numPage + 1 };
+
+    case PREV:
+      return { ...state, numPage: state.numPage - 1 };
 
     default:
       return { ...state };

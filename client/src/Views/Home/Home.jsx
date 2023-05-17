@@ -5,6 +5,7 @@ import { getVideogames } from "../../redux/actions";
 
 export default function Home() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getVideogames());
   }, [dispatch]);

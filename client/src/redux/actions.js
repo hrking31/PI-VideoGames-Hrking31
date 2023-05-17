@@ -3,10 +3,13 @@ import {
   GET_VIDEOGAMES,
   GET_VIDEOGAME,
   GET_VIDEOGAME_DATAIL,
-  ORDER,
+  ORDER_NAME,
   ORDER_GENRES,
   ORDER_RATING,
+  CREATED,
   RESET,
+  NEXT,
+  PREV,
 } from "./types";
 
 export const getVideogames = () => {
@@ -35,10 +38,10 @@ export const getVideogamesById = (id) => {
   };
 };
 
-export const orderCards = (order) => {
+export const orderName = (name) => {
   return {
-    type: ORDER,
-    payload: order,
+    type: ORDER_NAME,
+    payload: name,
   };
 };
 
@@ -56,8 +59,27 @@ export function orderRating(rating) {
   };
 }
 
+export const orderCreated = (created) => {
+  return {
+    type: CREATED,
+    payload: created,
+  };
+};
+
 export const reset = () => {
   return {
     type: RESET,
+  };
+};
+
+export const nextPage = () => {
+  return {
+    type: NEXT,
+  };
+};
+
+export const prevPage = () => {
+  return {
+    type: PREV,
   };
 };
