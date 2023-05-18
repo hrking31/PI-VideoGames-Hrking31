@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import style from "../NavBar/NavBar.module.css";
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
@@ -14,10 +15,16 @@ import {
 
 export default function NavBar(props) {
   const dispatch = useDispatch();
+  const [values, setValues] = useState({
+    value1: "DEFAULT",
+    value3: "DEFAULT",
+    value4: "DEFAULT",
+  });
 
   function handlerOrder(event) {
     event.preventDefault();
     const { value } = event.target;
+    setValues(event.target.value);
     dispatch(orderName(value));
   }
 
@@ -30,27 +37,40 @@ export default function NavBar(props) {
   function handlerRating(event) {
     event.preventDefault();
     const { value } = event.target;
+    setValues(event.target.value);
     dispatch(orderRating(value));
   }
 
   function handlerCreated(event) {
     event.preventDefault();
     const { value } = event.target;
+    setValues(event.target.value);
     dispatch(orderCreated(value));
   }
 
   function resetButton() {
     dispatch(reset());
+    setValues({
+      ...values,
+      value1: "DEFAULT",
+      value3: "DEFAULT",
+      value4: "DEFAULT",
+    });
   }
 
   return (
     <div className={style.nav}>
-      <select onChange={handlerOrder} name="name" defaultValue={"DEFAULT"}>
+      <select
+        onChange={handlerOrder}
+        name="name"
+        value={values.value1}
+        // defaultValue={"DEFAULT"}
+      >
         <option value="DEFAULT" disabled>
           Select Name
         </option>
-        <option value="asc">A</option>
-        <option value="desc">D</option>
+        <option value="asc">AZ</option>
+        <option value="desc">ZA</option>
       </select>
 
       <select onChange={handlerGenres} name="genres" defaultValue="DEFAULT">
@@ -65,7 +85,12 @@ export default function NavBar(props) {
         ))}
       </select>
 
-      <select onChange={handlerRating} name="rating" defaultValue={"DEFAULT"}>
+      <select
+        onChange={handlerRating}
+        name="rating"
+        value={values.value3}
+        // defaultValue={"DEFAULT"}
+      >
         <option value="DEFAULT" disabled>
           Select Rating
         </option>
@@ -73,7 +98,12 @@ export default function NavBar(props) {
         <option value="desc">Descendente</option>
       </select>
 
-      <select onChange={handlerCreated} name="created" defaultValue={"DEFAULT"}>
+      <select
+        onChange={handlerCreated}
+        name="created"
+        value={values.value4}
+        // defaultValue={"DEFAULT"}
+      >
         <option value="DEFAULT" disabled>
           Select Created
         </option>

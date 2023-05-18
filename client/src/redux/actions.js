@@ -10,6 +10,7 @@ import {
   RESET,
   NEXT,
   PREV,
+  // PAGES,
 } from "./types";
 
 export const getVideogames = () => {
@@ -83,3 +84,9 @@ export const prevPage = () => {
     type: PREV,
   };
 };
+
+// export const changesPage = () => {
+//   return {
+//     type: PAGES,
+//   };
+// };

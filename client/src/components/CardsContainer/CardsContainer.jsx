@@ -8,15 +8,13 @@ export default function CardsContainer() {
   const videogames = useSelector((state) => state.videogames);
   const numPage = useSelector((state) => state.numPage);
 
-  let initial = (numPage - 1) * 15;
-  let finish = numPage * 15;
+  const itemsPage = 15;
+  let initial = (numPage - 1) * itemsPage;
+  let finish = initial + itemsPage;
   let cantPages = Math.floor(videogames.length / 15);
 
   let viewVideogames = videogames.slice(initial, finish);
-  console.log("hola soy videogames", viewVideogames);
-  console.log("hola soy paginas", cantPages);
-  console.log("hola soy num paginas", numPage);
-  console.log("hola soy num paginas", videogames.length);
+
   return (
     <div>
       <div className={style.cards_container}>
@@ -37,7 +35,7 @@ export default function CardsContainer() {
           })}
       </div>
       <div>
-        <Paginate>cantPages={cantPages}</Paginate>
+        <Paginate cantPages={cantPages} />
       </div>
     </div>
   );

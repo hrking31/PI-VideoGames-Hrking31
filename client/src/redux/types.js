@@ -8,3 +8,4 @@ export const CREATED = "CREATED;";
 export const RESET = "RESET";
 export const NEXT = "NEXT";
 export const PREV = "PREV";
+// export const PAGES = "PAGES";
