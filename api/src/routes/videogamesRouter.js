@@ -7,8 +7,8 @@ const {
 
 const videogamesRouter = Router();
 
+videogamesRouter.post("/", postVideogames);
 videogamesRouter.get("/:id", getVideogamesById);
 videogamesRouter.get("/", getVideogames);
-videogamesRouter.post("/", postVideogames);
 
 module.exports = videogamesRouter;

@@ -1,4 +1,4 @@
-module.exports = cleanArrayDb = (arr) =>
+module.exports = cleanArrayApi = (arr) =>
   arr.map((Elem) => {
     return {
       id: Elem.id,
@@ -7,8 +7,8 @@ module.exports = cleanArrayDb = (arr) =>
       image: Elem.background_image,
       released: Elem.released,
       rating: Elem.rating,
-      platforms: Elem.platforms.map((nombre) => nombre),
+      platforms: Elem.platforms.map((nombre) => nombre.platform.name),
       genres: Elem.genres.map((nombre) => nombre.name),
-      created: Elem.created,
+      created: "false",
     };
   });
