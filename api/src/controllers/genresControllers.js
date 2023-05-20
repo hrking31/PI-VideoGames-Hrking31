@@ -3,26 +3,21 @@ const { Videogame, Genre } = require("../db");
 const { API_KEY } = process.env;
 
 //------>>>//--CREA RELACION DE GENRES EN DB--//<<<------//
-// const createGenreDb = async (name, videogameId) => {
-//   const newGenre = await Genre.create({ name });
-//   await Genre.setVideogames(videogameId);
-//   return newGenre;
-// };
 const createGenreDb = async (name, videogameId) => {
   const newGenre = await Genre.create({ name });
-  const videogame = await Videogame.findByPk(videogameId); // Obtener la instancia de Videogame
+  const videogame = await Videogame.findByPk(videogameId);
 
-  await newGenre.setVideogames([videogame]); // Establecer la relación entre el género y el videojuego
+  await newGenre.setVideogames([videogame]);
 
   return newGenre;
 };
 
 //------>>>//--BUSCA LOS GENRES Y LOS ALMACENA EN DB--//<<<------//
 const createGenre = async () => {
-  const response = await axios.get(
+  const genresApi = await axios.get(
     `https://api.rawg.io/api/genres?key=${API_KEY}`
   );
-  const genres = response.data.results.map((genre) => ({
+  const genres = genresApi.data.results.map((genre) => ({
     name: genre.name,
   }));
   genres.forEach(async (genre) => {

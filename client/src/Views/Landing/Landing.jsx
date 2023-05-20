@@ -1,6 +1,7 @@
 import style from "../Landing/Landing.module.css";
 import React from "react";
 import { Link } from "react-router-dom";
+import LinkedInButton from "../../components/LinkedInButton/LinkedInButton";
 
 export default function Landing() {
   return (
@@ -12,6 +13,7 @@ export default function Landing() {
         <Link to="/home">
           <button className={style.button}>START</button>
         </Link>
+        <LinkedInButton />
       </div>
     </div>
   );

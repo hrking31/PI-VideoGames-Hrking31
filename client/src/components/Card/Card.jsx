@@ -10,11 +10,10 @@ export default function Card(props) {
           <Link to={`/detail/${props.id}`}>
             <h2 className={style.name}>{props.name}</h2>
           </Link>
-          <h2> Genres:{props.genres}</h2>
-          {<h2> Creado en:{props.created}</h2>}
-          {<h2> Id:{props.id}</h2>}
-          {<h2> Genero:{props.genres}</h2>}
-          {<h2>clasificación{props.rating}</h2>}
+          <h2 className={style.genres}>{props.genres?.join(", ")}</h2>
+          {/* <h2> Id:{props.id}</h2>
+          <h2>clasificación{props.rating}</h2>
+          <h2> Creado en:{props.created}</h2> */}
         </div>
         <div className={style.cardImage}>
           <img src={props.image} alt="img not found" />

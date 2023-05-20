@@ -14,6 +14,7 @@ export default function Detail() {
   useEffect(() => {
     dispatch(getVideogamesById(id));
   }, [dispatch, id]);
+  console.log("===>", videogame.genres);
 
   return (
     <div>
@@ -42,9 +43,9 @@ export default function Detail() {
               <h4>RELEASED</h4>
               <h3>{videogame.rating}</h3>
               <h4>RATING</h4>
-              <h3>{videogame.genred}</h3>
+              <h3>{videogame.genres?.join(", ")}</h3>
               <h4>GENRES</h4>
-              <h3>{videogame.platforms}</h3>
+              <h3>{videogame.platforms?.join(", ")}</h3>
               <h4>PLATFORMS</h4>
               {/* <h4>{videogame.description}</h4> */}
               <div

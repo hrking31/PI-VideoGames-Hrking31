@@ -1,0 +1,1 @@
+GENRES Y PLATFORMS se obtienen con una GET y se almacenan en un array, se debe modificar creando un estado global de redux para cada uno y con este estado si crear los filtros y los sect y dejar de usar los array.

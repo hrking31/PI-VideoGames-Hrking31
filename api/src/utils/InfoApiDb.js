@@ -7,7 +7,7 @@ const infoDb = (game) => {
     release: info.released,
     rating: info.rating,
     platforms: info.platforms.map((ch) => ch),
-    genres: infoDb.genres?.map((nombre) => nombre.name),
+    genres: info.genres?.map((nombre) => nombre.name),
     created: info.created,
   };
 };

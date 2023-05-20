@@ -1,6 +1,6 @@
+import style from "../NavBar/NavBar.module.css";
 import React from "react";
 import { useState } from "react";
-import style from "../NavBar/NavBar.module.css";
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import { useDispatch } from "react-redux";
@@ -17,6 +17,7 @@ export default function NavBar(props) {
   const dispatch = useDispatch();
   const [values, setValues] = useState({
     value1: "DEFAULT",
+    value2: "DEFAULT",
     value3: "DEFAULT",
     value4: "DEFAULT",
   });
@@ -31,6 +32,7 @@ export default function NavBar(props) {
   function handlerGenres(event) {
     event.preventDefault();
     const { value } = event.target;
+    setValues(event.target.value);
     dispatch(orderGenres(value));
   }
 
@@ -53,6 +55,7 @@ export default function NavBar(props) {
     setValues({
       ...values,
       value1: "DEFAULT",
+      value2: "DEFAULT",
       value3: "DEFAULT",
       value4: "DEFAULT",
     });
@@ -73,7 +76,7 @@ export default function NavBar(props) {
         <option value="desc">ZA</option>
       </select>
 
-      <select onChange={handlerGenres} name="genres" defaultValue="DEFAULT">
+      <select onChange={handlerGenres} name="genres" value={values.value2}>
         {genres.map((genre) => (
           <option
             key={genre.value}

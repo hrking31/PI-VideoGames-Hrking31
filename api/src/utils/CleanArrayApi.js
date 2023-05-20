@@ -1,4 +1,19 @@
-module.exports = cleanArrayApi = (arr) =>
+const cleanArrayDb = (arr) =>
+  arr.map((Elem) => {
+    return {
+      id: Elem.id,
+      name: Elem.name,
+      description: Elem.description,
+      image: Elem.image,
+      release: Elem.release,
+      rating: Elem.rating,
+      platforms: Elem.platforms.map((ch) => ch),
+      genres: Elem.genres?.map((ch) => ch.name),
+      created: Elem.created,
+    };
+  });
+
+const cleanArrayApi = (arr) =>
   arr.map((Elem) => {
     return {
       id: Elem.id,
@@ -12,3 +27,4 @@ module.exports = cleanArrayApi = (arr) =>
       created: "false",
     };
   });
+module.exports = { cleanArrayDb, cleanArrayApi };

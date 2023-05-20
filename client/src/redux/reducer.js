@@ -58,8 +58,8 @@ const rootReducer = (state = initialState, action) => {
 
     //------>>>//--ORDENA POR GENRES--//<<<------//
     case ORDER_GENRES:
-      const newGenres = [...state.videogames].filter(
-        (genero) => genero.genres === action.payload
+      const newGenres = [...state.videogames].filter((genero) =>
+        genero.genres?.includes(action.payload)
       );
       return { ...state, videogames: newGenres };
 

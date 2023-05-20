@@ -6,9 +6,36 @@ const {
 } = require("../controllers/videogamesControllers");
 
 //------>>>//--CREA VIDEOGAME--//<<<------//
+// const postVideogames = async (req, res) => {
+//   const { name, description, platforms, image, released, rating, genres } =
+//     req.body;
+//   try {
+//     const newVideogame = await createVideogame(
+//       name,
+//       description,
+//       platforms,
+//       image,
+//       released,
+//       rating,
+//       genres
+//     );
+//     res.status(201).json(newVideogame);
+//   } catch (error) {
+//     res.status(400).json({ error: error.message });
+//   }
+// };
+
 const postVideogames = async (req, res) => {
-  const { name, description, platforms, image, released, rating, genres } =
-    req.body;
+  const {
+    name,
+    description,
+    platforms,
+    image,
+    released,
+    rating,
+    genres,
+    videogameId,
+  } = req.body;
   try {
     const newVideogame = await createVideogame(
       name,

@@ -1,14 +1,16 @@
-import axios from "axios";
 import style from "../Form/Form.module.css";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import genres from "../../utils/arrayGenres";
+import platforms from "../../utils/arrayPlatforms";
 
 export default function Form() {
   const [form, setForm] = useState({
     name: "",
     rating: "",
-    release: "",
-    img: "",
+    released: "",
+    image: "",
     description: "",
     genres: [],
     platforms: [],
@@ -18,7 +20,7 @@ export default function Form() {
     name: "",
     rating: "",
     release: "",
-    img: "",
+    image: "",
     description: "",
     genres: [],
     platforms: [],
@@ -35,8 +37,18 @@ export default function Form() {
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
-    validate({ ...form, [property]: value });
     setForm({ ...form, [property]: value });
+    validate({ ...form, [property]: value });
+  };
+
+  const handleSelectGenres = (event) => {
+    const value = event.target.value;
+    setForm({ ...form, genres: [...form.genres, value] });
+  };
+
+  const handleSelectPlatforms = (event) => {
+    const value = event.target.value;
+    setForm({ ...form, platforms: [...form.platforms, value] });
   };
 
   const validate = (form) => {
@@ -71,6 +83,8 @@ export default function Form() {
 
   const submitHandler = (event) => {
     event.preventDefault();
+    console.log("===>", form);
+
     axios
       .post("http://localhost:3001/videogames", form)
       .then((res) => alert(res))
@@ -161,15 +175,46 @@ export default function Form() {
           {errors.description && <span>{errors.description}</span>}
         </div>
 
-        <div>
-          <label>Select Genre</label>
-          <input></input>
-        </div>
+        {/* <select onChange={changeHandler} name="genres" defaultValue={"DEFAULT"}>
+          {genres.map((genre) => (
+            <option
+              key={genre.value}
+              value={genre.value}
+              disabled={genre.disabled}
+            >
+              {genre.label}
+            </option>
+          ))}
+        </select> */}
 
-        <div>
-          <label>Select Platform</label>
-          <input></input>
-        </div>
+        {genres.map((genre) => (
+          <div key={genre.value}>
+            <input
+              type="checkbox"
+              id={genre.value}
+              name="genres"
+              value={genre.value}
+              disabled={genre.disabled}
+              onChange={handleSelectGenres}
+            />
+            <label htmlFor={genre.value}>{genre.label}</label>
+          </div>
+        ))}
+
+        {platforms.map((platforms) => (
+          <div key={platforms.value}>
+            <input
+              type="checkbox"
+              id={platforms.value}
+              name="platforms"
+              value={platforms.value}
+              disabled={platforms.disabled}
+              onChange={handleSelectPlatforms}
+            />
+            <label htmlFor={platforms.value}>{platforms.label}</label>
+          </div>
+        ))}
+
         <button className={style.button} type="submit">
           CREATE !!!
         </button>
